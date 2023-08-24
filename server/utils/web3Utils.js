@@ -1,7 +1,8 @@
-const Web3 = require('web3');
+const {Web3} = require('web3');
 const{PROJECT_ID} = process.env;
 
-const web3 = new Web3(`https://sepolia.infura.io/v3/${PROJECT_ID}`);
+const infuraUrl = `https://sepolia.infura.io/v3/${PROJECT_ID}`;
+const web3 = new Web3(new Web3.providers.HttpProvider(infuraUrl));
 
 const contractAbi = [
   {
@@ -130,7 +131,7 @@ const contractAbi = [
     "type": "function"
   }
 ]; // Replace with your contract's ABI
-const contractAddress = '0x5f1595B57849373d056FE0D5B6EDC2A03AB6A79E'; // Replace with your contract's address
+const contractAddress = '0xBcE2e1F4D182e03694D176fec90F79945C7990E0'; // Replace with your contract's address
 
 const contract = new web3.eth.Contract(contractAbi, contractAddress);
 
@@ -139,6 +140,22 @@ const getAddressBalance = async (address) => {
   return web3.utils.fromWei(balance, 'ether');
 };
 
+function triggerCustomEvent(userAddress) {
+  contract.methods.triggerEvent().send({ from: userAddress })
+    .on('transactionHash', (hash) => {
+      console.log('Transaction hash:', hash);
+    })
+    .on('receipt', (receipt) => {
+      console.log('Transaction receipt:', receipt);
+    })
+    .on('error', (error) => {
+      console.error('Error triggering custom event:', error);
+    });
+}
+
+
+
 module.exports = {
   getAddressBalance,
+  triggerCustomEvent
 };

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { generateKeyPair, verifySignature } = require('../utils/cryptoUtils');
 const User = require('../models/User');
+const {triggerCustomEvent} = require('../utils/web3Utils')
 
 router.post('/register', async (req, res) => {
   const { username } = req.body;
@@ -10,6 +11,7 @@ router.post('/register', async (req, res) => {
   try {
     const user = new User({ username, publicKey });
     await user.save();
+    triggerCustomEvent('0xC8A38a3dC23881741b1AfCAb928a0DFE2c3ce755');
     res.json({ publicKey });
   } catch (error) {
     console.error(error);

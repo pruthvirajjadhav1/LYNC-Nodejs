@@ -6380,12 +6380,12 @@
     "11155111": {
       "events": {},
       "links": {},
-      "address": "0x5f1595B57849373d056FE0D5B6EDC2A03AB6A79E",
-      "transactionHash": "0x232b0510211fe18928b5728cffd9281df1a6ca7f309a842069151a6c40968a23"
+      "address": "0xBcE2e1F4D182e03694D176fec90F79945C7990E0",
+      "transactionHash": "0x5de1b35edb44066a489cd02d1c3391966f9cd31e9da28a655f277cf585f63982"
     }
   },
   "schemaVersion": "3.4.15",
-  "updatedAt": "2023-08-22T12:48:59.718Z",
+  "updatedAt": "2023-08-24T07:54:54.184Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
