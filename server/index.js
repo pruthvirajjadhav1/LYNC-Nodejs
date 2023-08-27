@@ -28,6 +28,8 @@ app.get("/",(req,res)=>{
 app.use('/auth', authRoutes);
 app.use('/webhook', webhookRoutes);
 
-app.listen(3000, () => {
+
+
+app.listen(process.env.PORT, () => {
   console.log('Server is running on port 3000');
 });
